@@ -1,0 +1,77 @@
+<section id="contact" class="section contact">
+  <div class="container grid">
+    <div class="copy">
+      <div reveal class="eyebrow"><span>{{ num }}</span><span class="rule"></span><span>Contact</span></div>
+      <h2 class="title mask-line"><span reveal="mask">Let's <em>Connect.</em></span></h2>
+      <p reveal class="lede">Interested in exchanging ideas about business, analytics, consulting or professional opportunities? I'd be happy to connect.</p>
+      <dl reveal class="facts channels">
+        <div>
+          <dt>LinkedIn</dt>
+          <dd><a [href]="site.linkedin" target="_blank" rel="noopener" class="chan">{{ site.linkedinHandle }} ↗</a></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>
+            <!-- TODO(content): set preferred email via SITE.contactEmail — never invent one -->
+            @if (email) {
+              <a [href]="'mailto:' + email" class="chan">{{ email }}</a>
+            } @else if (drafts) {
+              <app-draft>To be provided</app-draft>
+            } @else {
+              <span class="muted">Via LinkedIn or the form</span>
+            }
+          </dd>
+        </div>
+        <div><dt>Location</dt><dd>{{ site.location }}</dd></div>
+      </dl>
+    </div>
+
+    <div reveal [revealDelay]="150" class="panel">
+      @if (!sent()) {
+        <form (submit)="submit($event)" aria-label="Contact form" class="form" novalidate>
+          <div class="field">
+            <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder=" " />
+            <label for="cf-name">Full name</label><span class="line" aria-hidden="true"></span>
+          </div>
+          <div class="field">
+            <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder=" " />
+            <label for="cf-email">Email address</label><span class="line" aria-hidden="true"></span>
+          </div>
+          <div class="field">
+            <input id="cf-subject" name="subject" type="text" placeholder=" " />
+            <label for="cf-subject">Subject</label><span class="line" aria-hidden="true"></span>
+          </div>
+          <div class="field">
+            <textarea id="cf-message" name="message" rows="5" required placeholder=" "></textarea>
+            <label for="cf-message">Message</label><span class="line" aria-hidden="true"></span>
+          </div>
+
+          @if (error()) {
+            <p class="err" role="alert">Sorry, the message could not be sent. Please try again or connect on LinkedIn.</p>
+          }
+
+          <div class="actions">
+            <button type="submit" class="btn btn--solid submit" [disabled]="sending()" magnetic="0.3">
+              @if (sending()) {
+                <span class="spin" aria-hidden="true"></span><span>Sending…</span>
+              } @else {
+                <span>Send Message</span><span class="arrow--x" aria-hidden="true">→</span>
+              }
+            </button>
+            <span class="mono-label">Name, email &amp; message required</span>
+          </div>
+        </form>
+      } @else {
+        <div #success class="success" role="status">
+          <svg width="56" height="56" viewBox="0 0 52 52" aria-hidden="true">
+            <circle data-draw cx="26" cy="26" r="24" style="fill:none;stroke:#B89A62;stroke-width:1.5;stroke-dasharray:151;stroke-dashoffset:0" />
+            <path data-draw d="M15 27 L22.5 34 L37 18.5" style="fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:36;stroke-dashoffset:0" />
+          </svg>
+          <h3>Thank you.</h3>
+          <p>Your message has been sent. I'll get back to you soon.</p>
+          <button type="button" class="again" (click)="reset()">Send another message</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

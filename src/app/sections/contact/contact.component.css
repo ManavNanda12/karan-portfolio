@@ -1,0 +1,63 @@
+.contact { background: var(--paper); border-top: 1px solid rgba(var(--ink-rgb),.08); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(48px,7vw,110px); align-items: start; }
+.copy { min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+.title {
+  margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(44px,5.6vw,84px); line-height: 1; letter-spacing: -.03em;
+}
+.title em { color: var(--gold-deep); }
+.lede { margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 28em; text-wrap: pretty; }
+.channels { margin-top: 12px; max-width: 460px; }
+.channels > div { grid-template-columns: 110px minmax(0,1fr); }
+.chan { font-size: 16px; text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 1px; word-break: break-word; }
+.muted { color: var(--slate); }
+
+.panel {
+  position: relative; min-width: 0; background: var(--cream); border: 1px solid rgba(var(--ink-rgb),.1); padding: clamp(28px,4vw,52px);
+}
+/* Corner ticks */
+.panel::before, .panel::after {
+  content: ''; position: absolute; width: 18px; height: 18px; border-color: var(--gold); border-style: solid; pointer-events: none;
+}
+.panel::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.panel::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+.form { display: flex; flex-direction: column; gap: 22px; }
+.field { position: relative; padding-top: 16px; }
+.field input, .field textarea {
+  display: block; width: 100%; border: 0; border-bottom: 1px solid rgba(var(--ink-rgb),.22); background: transparent;
+  padding: 14px 0 12px; font-size: 18px; color: var(--navy); outline: none; border-radius: 0;
+}
+.field textarea { line-height: 1.55; resize: vertical; min-height: 140px; }
+.field label {
+  position: absolute; left: 0; top: 30px; font-size: 17px; color: var(--slate); pointer-events: none;
+  transform-origin: left top; transition: transform .35s var(--ease), color .3s;
+}
+.field input:focus + label, .field textarea:focus + label,
+.field input:not(:placeholder-shown) + label, .field textarea:not(:placeholder-shown) + label {
+  transform: translateY(-26px) scale(.74);
+}
+.field input:focus + label, .field textarea:focus + label { color: var(--gold-deep); }
+.line {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left center; transition: transform .55s var(--ease);
+}
+.field input:focus ~ .line, .field textarea:focus ~ .line { transform: scaleX(1); }
+.field input:user-invalid, .field textarea:user-invalid { border-bottom-color: #A2493A; }
+
+.err { margin: 0; font-size: 15px; color: #A2493A; }
+.actions { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.submit { min-height: 56px; padding: 0 30px; letter-spacing: .03em; border: 0; }
+.submit[disabled] { opacity: .85; cursor: progress; }
+.spin {
+  width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(246,242,234,.35); border-top-color: var(--gold-soft);
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.success { min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 22px; }
+.success h3 { margin: 0; font-family: var(--serif); font-weight: 300; font-size: 44px; line-height: 1.05; letter-spacing: -.02em; }
+.success p { margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 26em; }
+.again {
+  background: transparent; border: 0; padding: 0; min-height: 44px; font-size: 15px; font-weight: 500; color: var(--navy);
+  cursor: pointer; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px;
+}

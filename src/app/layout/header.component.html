@@ -1,0 +1,53 @@
+<header class="hdr" [class.hdr--scrolled]="scrolled()" [class.hdr--hidden]="hidden()" [class.hdr--menu]="menuOpen()">
+  <div class="hdr-inner">
+    <a href="#top" class="brand" (click)="go('top', $event)">
+      <span class="brand-mark">{{ site.monogram }}</span>
+      <span class="brand-name">{{ site.name }}</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      @for (n of nav; track n.id) {
+        <a [href]="'#' + n.id" class="nav-link" [class.is-active]="active() === n.id" (click)="go(n.id, $event)">{{ n.label }}</a>
+      }
+      <a href="#contact" class="btn btn--solid nav-cta" magnetic="0.25" (click)="go('contact', $event)">Let's Connect</a>
+    </nav>
+
+    <div class="actions">
+      <button type="button" class="theme-btn" magnetic="0.3" (click)="theme.toggle($event)"
+              [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+              [attr.aria-pressed]="theme.theme() === 'dark'" [class.is-dark]="theme.theme() === 'dark'">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <mask id="moon-mask"><rect width="24" height="24" fill="#fff" /><circle class="moon-bite" cx="24" cy="4" r="7" fill="#000" /></mask>
+          <circle class="sun-core" cx="12" cy="12" r="5" mask="url(#moon-mask)" />
+          <g class="sun-rays">
+            <line x1="12" y1="1.5" x2="12" y2="4" /><line x1="12" y1="20" x2="12" y2="22.5" />
+            <line x1="1.5" y1="12" x2="4" y2="12" /><line x1="20" y1="12" x2="22.5" y2="12" />
+            <line x1="4.6" y1="4.6" x2="6.3" y2="6.3" /><line x1="17.7" y1="17.7" x2="19.4" y2="19.4" />
+            <line x1="4.6" y1="19.4" x2="6.3" y2="17.7" /><line x1="17.7" y1="6.3" x2="19.4" y2="4.6" />
+          </g>
+        </svg>
+      </button>
+
+      <button type="button" class="menu-btn" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen()" aria-controls="mobile-nav">
+      <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
+      {{ menuOpen() ? 'Close' : 'Menu' }}
+    </button>
+    </div>
+  </div>
+  <div #progress class="progress" aria-hidden="true"></div>
+</header>
+
+<nav id="mobile-nav" class="mnav" [class.mnav--open]="menuOpen()" aria-label="Mobile" [attr.aria-hidden]="!menuOpen()" [attr.inert]="menuOpen() ? null : ''">
+  @for (n of nav; track n.id; let i = $index) {
+    <a [href]="'#' + n.id" class="mnav-link" [style.--i]="i" (click)="go(n.id, $event)">
+      <span class="mnav-num">0{{ i + 1 }}</span>{{ n.label }}
+    </a>
+  }
+  <a href="#contact" class="mnav-link mnav-link--accent" [style.--i]="nav.length" (click)="go('contact', $event)">
+    <span class="mnav-num">0{{ nav.length + 1 }}</span>Let's Connect
+  </a>
+  <div class="mnav-foot" [style.--i]="nav.length + 1">
+    <span>{{ site.location }}</span>
+    <a [href]="site.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>

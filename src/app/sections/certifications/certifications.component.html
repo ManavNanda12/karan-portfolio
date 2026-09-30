@@ -1,0 +1,42 @@
+<section id="certifications" class="section certs">
+  <div class="container">
+    <div class="head">
+      <div>
+        <div reveal class="eyebrow"><span>04</span><span class="rule"></span><span>Certifications</span></div>
+        <h2 class="h2">
+          <span class="mask-line"><span reveal="mask">Professional</span></span>
+          <span class="mask-line"><span reveal="mask" [revealDelay]="120" class="accent">Certifications</span></span>
+        </h2>
+      </div>
+      <div reveal class="filters" role="group" aria-label="Filter certifications">
+        <span #indicator class="indicator" aria-hidden="true"></span>
+        @for (f of filters; track f.label) {
+          <button #pill type="button" class="pill" [class.is-active]="filter() === f.label"
+                  [attr.aria-pressed]="filter() === f.label" (click)="select(f.label)">
+            {{ f.label }}<span class="pill-count">{{ f.count }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div #grid reveal class="grid" aria-live="polite">
+      @for (c of certs(); track c.title; let i = $index) {
+        <a class="cert" tilt="7" [href]="c.url || linkedin" target="_blank" rel="noopener" data-cursor="Open"
+           [attr.aria-label]="c.title + ' — ' + c.issuer + ' (opens LinkedIn)'">
+          <span class="glare" aria-hidden="true"></span>
+          <div class="cert-top mono-label"><span>{{ c.category }}</span><span class="yr">{{ c.year }}</span></div>
+          <span class="cert-idx" aria-hidden="true">{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <h3 class="cert-title">{{ c.title }}</h3>
+          <div class="cert-meta">
+            <span class="issuer">{{ c.issuer }}</span>
+            <span class="date">{{ c.date }}</span>
+          </div>
+          <div class="cert-foot">
+            @if (c.expired) { <span class="expired">{{ c.expired }}</span> }
+            <span class="cred">View on LinkedIn <span class="cred-arrow" aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

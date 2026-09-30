@@ -1,0 +1,94 @@
+<section id="top" #section class="hero">
+  <!-- Ambient background: faint grid + drifting gold light -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="grid"></div>
+    <span class="orb orb--a"></span>
+    <span class="orb orb--b"></span>
+  </div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div reveal class="eyebrow">
+        <span class="rule rule--short"></span>
+        <span>{{ site.name }} <span class="sep">|</span> <span class="typed">{{ role() }}</span><span class="caret" aria-hidden="true"></span></span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="mask-line"><span reveal="mask" [revealDelay]="100">Analytical Thinking.</span></span>
+        <span class="mask-line"><span reveal="mask" [revealDelay]="220">Global Perspective.</span></span>
+        <span class="mask-line"><span reveal="mask" [revealDelay]="340" class="accent">Meaningful Impact.</span></span>
+      </h1>
+
+      <div reveal [revealDelay]="500" class="hero-intro">
+        <p>I'm {{ site.name }}, a Senior Analyst in Risk Consulting at EY, with an MBA from the University of Exeter, United Kingdom.</p>
+        <p>My academic and professional journey has developed my interests in business analytics, financial analysis, risk management and strategic decision-making.</p>
+      </div>
+
+      <div reveal [revealDelay]="650" class="hero-ctas">
+        <a href="#journey" class="btn btn--solid" magnetic (click)="go('journey', $event)">Explore My Journey <span class="arrow" aria-hidden="true">↓</span></a>
+        <!-- TODO(content): set the résumé file via SITE.resumeUrl -->
+        <a [href]="resume || '#'" (click)="onResume($event)" target="_blank" rel="noopener" class="btn btn--ghost" magnetic>Download Résumé</a>
+        <a [href]="site.linkedin" target="_blank" rel="noopener" class="u-link u-link--on li-link">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+      </div>
+      @if (!resume) {
+        <div class="draft-row"><app-draft>Résumé file — to be provided</app-draft></div>
+      }
+
+      <dl reveal [revealDelay]="800" class="stats">
+        @for (s of stats; track s.label; let i = $index) {
+          <div class="stat">
+            <dt class="mono-label">{{ s.label }}</dt>
+            <dd><span [countUp]="s.value" [countDelay]="i * 120"></span>{{ s.suffix }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+
+    <figure reveal [revealDelay]="250" class="portrait-fig">
+      <div class="portrait-wrap">
+        <div class="portrait-frame" aria-hidden="true"></div>
+        <div #portrait class="portrait" data-cursor="Touch">
+          <div #liquid class="liquid">
+            <app-photo [src]="portraitSrc" placeholder="Professional portrait of Karandeep" [monogram]="site.monogram" [showLabel]="false" [alt]="'Portrait of ' + site.name" />
+          </div>
+          <div #glow class="glow" aria-hidden="true"></div>
+        </div>
+
+        <!-- Spinning seal -->
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs><path id="seal-path" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" /></defs>
+            <text><textPath href="#seal-path" textLength="286" lengthAdjust="spacing">RISK · ANALYTICS · STRATEGY · FINANCE · </textPath></text>
+          </svg>
+          <span class="seal-core">✦</span>
+        </div>
+
+        <!-- Floating status badge -->
+        <div class="badge">
+          <span class="pulse" aria-hidden="true"></span>
+          <span><span class="mono-label">Currently</span><br />Senior Analyst · EY</span>
+        </div>
+      </div>
+      <figcaption class="mono-label portrait-cap">
+        <span>{{ site.location }}</span>
+        <span>{{ site.coords }}</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <a href="#about" class="scroll-cue" (click)="go('about', $event)" aria-label="Scroll to About">
+    <span class="mono-label">Scroll</span>
+    <span class="scroll-line" aria-hidden="true"></span>
+  </a>
+
+  <!-- Liquid displacement filter used by the portrait -->
+  <svg width="0" height="0" aria-hidden="true" class="defs">
+    <defs>
+      <filter id="ksj-liquid" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+        <feTurbulence #turb type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="2" seed="7" result="noise" />
+        <feOffset #offs in="noise" dx="0" dy="0" result="moved" />
+        <feDisplacementMap #disp in="SourceGraphic" in2="moved" scale="0" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+</section>

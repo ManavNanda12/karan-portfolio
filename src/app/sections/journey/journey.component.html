@@ -1,0 +1,87 @@
+<section id="journey" class="section journey">
+  <div class="container">
+    <div class="intro">
+      <div reveal class="eyebrow"><span>03</span><span class="rule"></span><span>Education &amp; Career Journey</span></div>
+      <h2 class="h2">
+        <span class="mask-line"><span reveal="mask">A journey in</span></span>
+        <span class="mask-line"><span reveal="mask" [revealDelay]="120" class="accent">four chapters.</span></span>
+      </h2>
+    </div>
+
+    <div #tl class="tl">
+      <div class="tl-line" aria-hidden="true"><div #fill class="tl-fill"></div></div>
+
+      @for (c of chapters; track c.num; let i = $index; let odd = $odd) {
+        <div class="ch" [class.ch--flip]="odd" [class.ch--current]="c.current">
+          <div class="ch-mid"><span class="marker"></span></div>
+
+          <article reveal class="ch-body">
+            <div class="ch-num" aria-hidden="true"><span class="ch-num-out">{{ c.num }}</span><span class="ch-num-in">{{ c.num }}</span></div>
+            <div class="ch-kicker">
+              <span>Chapter {{ c.num }} — {{ c.kicker }}</span>
+              @if (c.current) { <span class="now"><span class="now-dot"></span>Current chapter</span> }
+            </div>
+            <h3 class="ch-title mask-line"><span reveal="mask" [revealDelay]="150">{{ c.title }}</span></h3>
+
+            <dl class="facts facts--plain ch-facts">
+              @for (f of c.facts; track f.label) {
+                <div>
+                  <dt>{{ f.label }}</dt>
+                  <dd>
+                    @if (f.value) { <span>{{ f.value }}</span> }
+                    @if (f.drafts) {
+                      <span class="draft-wrap">@for (d of f.drafts; track d) { <app-draft>{{ d }}</app-draft> }</span>
+                    }
+                  </dd>
+                </div>
+              }
+            </dl>
+
+            <p class="body-copy ch-text">{{ c.body }}</p>
+
+            @if (c.coursework) {
+              <div class="block">
+                <div class="mono-label">Relevant coursework</div>
+                <ul class="chips">
+                  @for (k of c.coursework; track k; let j = $index) {
+                    <li reveal [revealDelay]="j * 50">{{ k }}</li>
+                  }
+                </ul>
+              </div>
+            }
+            @if (c.activities) {
+              <div class="block">
+                <div class="mono-label">Activities &amp; societies</div>
+                <p class="acts">{{ c.activities }}</p>
+              </div>
+            }
+          </article>
+
+          @switch (c.aside.kind) {
+            @case ('photo') {
+              @if (c.aside.kind === 'photo') {
+                <figure class="ch-aside">
+                  <div reveal="clip" class="ph-frame" [style.aspect-ratio]="c.aside.ratio" data-cursor="View">
+                    <div class="ph-inner" parallax="-0.06">
+                      <app-photo [src]="c.aside.src" [placeholder]="c.aside.placeholder" />
+                    </div>
+                  </div>
+                  <figcaption class="mono-label cap">
+                    <span>{{ c.aside.caption }}</span>
+                    @if (c.aside.coords) { <span>{{ c.aside.coords }}</span> }
+                  </figcaption>
+                </figure>
+              }
+            }
+            @case ('present') {
+              <div reveal [revealDelay]="180" class="ch-aside present">
+                <div class="present-word">Present</div>
+                <div class="mono-label">{{ c.aside.caption }}</div>
+              </div>
+            }
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
