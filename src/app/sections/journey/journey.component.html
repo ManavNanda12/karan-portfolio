@@ -61,8 +61,8 @@
             @case ('photo') {
               @if (c.aside.kind === 'photo') {
                 <figure class="ch-aside">
-                  <div reveal="clip" class="ph-frame" [style.aspect-ratio]="c.aside.ratio" data-cursor="View">
-                    <div class="ph-inner" parallax="-0.06">
+                  <div class="ph-frame" [style.aspect-ratio]="c.aside.ratio" data-cursor="View">
+                    <div class="ph-inner">
                       <app-photo [src]="c.aside.src" [placeholder]="c.aside.placeholder" />
                     </div>
                   </div>

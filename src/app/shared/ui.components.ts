@@ -25,7 +25,7 @@ import { MotionService } from './motion.service';
   `,
   styles: `
     :host { display: block; width: 100%; height: 100%; overflow: hidden; }
-    img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
     .ph {
       position: relative; width: 100%; height: 100%; display: grid; place-items: center;
       background:

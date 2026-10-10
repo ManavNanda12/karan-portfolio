@@ -1,4 +1,4 @@
-<section id="top" #section class="hero">
+<section id="top" class="hero">
   <!-- Ambient background: faint grid + drifting gold light -->
   <div class="hero-bg" aria-hidden="true">
     <div class="grid"></div>
@@ -20,7 +20,7 @@
       </h1>
 
       <div reveal [revealDelay]="500" class="hero-intro">
-        <p>I'm {{ site.name }}, a Senior Analyst in Risk Consulting at EY, with an MBA from the University of Exeter, United Kingdom.</p>
+        <p>I'm {{ site.name }}, a Senior Analyst in Risk Consulting at EY, with an MSc from the University of Exeter, United Kingdom.</p>
         <p>My academic and professional journey has developed my interests in business analytics, financial analysis, risk management and strategic decision-making.</p>
       </div>
 
@@ -44,14 +44,11 @@
       </dl>
     </div>
 
-    <figure reveal [revealDelay]="250" class="portrait-fig">
+    <figure class="portrait-fig">
       <div class="portrait-wrap">
         <div class="portrait-frame" aria-hidden="true"></div>
-        <div #portrait class="portrait" data-cursor="Touch">
-          <div #liquid class="liquid">
-            <app-photo [src]="portraitSrc" placeholder="Professional portrait of Karandeep" [monogram]="site.monogram" [showLabel]="false" [alt]="'Portrait of ' + site.name" />
-          </div>
-          <div #glow class="glow" aria-hidden="true"></div>
+        <div class="portrait">
+          <app-photo [src]="portraitSrc" placeholder="Professional portrait of Karandeep" [monogram]="site.monogram" [showLabel]="false" [alt]="'Portrait of ' + site.name" />
         </div>
 
         <!-- Spinning seal -->
@@ -81,14 +78,4 @@
     <span class="scroll-line" aria-hidden="true"></span>
   </a>
 
-  <!-- Liquid displacement filter used by the portrait -->
-  <svg width="0" height="0" aria-hidden="true" class="defs">
-    <defs>
-      <filter id="ksj-liquid" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-        <feTurbulence #turb type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="2" seed="7" result="noise" />
-        <feOffset #offs in="noise" dx="0" dy="0" result="moved" />
-        <feDisplacementMap #disp in="SourceGraphic" in2="moved" scale="0" xChannelSelector="R" yChannelSelector="G" />
-      </filter>
-    </defs>
-  </svg>
 </section>

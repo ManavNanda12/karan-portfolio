@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CAREER, EY_HIGHLIGHTS, EY_RESPONSIBILITIES, FOCUS_AREAS, PREVIOUS_EXPERIENCE } from '../data/portfolio.data';
+import { CAREER, CLIENT_ENGAGEMENTS, EY_HIGHLIGHTS, EY_RESPONSIBILITIES, FOCUS_AREAS, PREVIOUS_EXPERIENCE } from '../data/portfolio.data';
 import { DraftComponent } from '../shared/ui.components';
 import { ParallaxDirective, RevealDirective, TiltDirective } from '../shared/motion.directives';
 
@@ -79,6 +79,26 @@ import { ParallaxDirective, RevealDirective, TiltDirective } from '../shared/mot
             </div>
           }
         </div>
+
+        <section class="clients" aria-labelledby="clients-title">
+          <div reveal class="clients-heading">
+            <div>
+              <span class="mono-label gold">Selected engagements · Client names withheld</span>
+              <h3 id="clients-title">Clients I’ve worked with</h3>
+            </div>
+            <p>Cross-border experience across complex, operationally critical industries.</p>
+          </div>
+          <div class="client-grid">
+            @for (client of clients; track client.market + client.sector; let i = $index) {
+              <article reveal [revealDelay]="i * 100" class="client-card">
+                <div class="client-top"><span class="client-number">0{{ i + 1 }}</span><span class="client-market">{{ client.market }}</span></div>
+                <h4>{{ client.sector }}</h4>
+                <p>{{ client.summary }}</p>
+                <div class="client-contribution">{{ client.contribution }}</div>
+              </article>
+            }
+          </div>
+        </section>
       </div>
     </section>
   `,
@@ -166,6 +186,27 @@ import { ParallaxDirective, RevealDirective, TiltDirective } from '../shared/mot
     .d-list li { position: relative; padding-left: 22px; font-size: 15px; line-height: 1.6; color: rgba(246,242,234,.82); }
     .d-list li::before { content: ''; position: absolute; left: 0; top: .8em; width: 10px; height: 1px; background: var(--gold); }
     .d-list--star li::before { content: '✦'; width: auto; height: auto; top: 0; background: none; color: var(--gold); font-size: 12px; }    .gold { color: var(--gold-soft) !important; letter-spacing: .06em; }
+    .clients { margin-top: clamp(68px, 8vw, 110px); padding-top: clamp(30px, 4vw, 52px); border-top: 1px solid rgba(217,195,152,.3); }
+    .clients-heading { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 30px; }
+    .clients-heading h3 { margin: 14px 0 0; font-family: var(--serif); font-weight: 300; font-size: clamp(30px, 4vw, 48px); line-height: 1.05; letter-spacing: -.025em; }
+    .clients-heading p { max-width: 30em; margin: 0 0 4px; color: rgba(246,242,234,.72); font-size: 15px; line-height: 1.6; }
+    .client-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .client-card {
+      position: relative; min-width: 0; padding: clamp(22px, 3vw, 34px); display: flex; flex-direction: column; align-items: flex-start;
+      border: 1px solid rgba(217,195,152,.22); background: linear-gradient(135deg, rgba(217,195,152,.075), transparent 62%);
+      transition: transform .5s var(--ease), border-color .4s, background-color .4s;
+    }
+    .client-card:hover { transform: translateY(-5px); border-color: rgba(217,195,152,.65); background-color: rgba(217,195,152,.035); }
+    .client-top { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .client-number { color: var(--gold-soft); font-family: var(--mono); font-size: 11px; letter-spacing: .14em; }
+    .client-market { color: var(--mist); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; text-align: right; }
+    .client-card h4 { margin: 30px 0 12px; font-family: var(--serif); font-weight: 400; font-size: clamp(23px, 2.5vw, 31px); line-height: 1.1; }
+    .client-card p { margin: 0; color: rgba(246,242,234,.78); font-size: 15px; line-height: 1.7; }
+    .client-contribution { margin-top: 24px; padding-top: 15px; border-top: 1px solid rgba(217,195,152,.2); color: var(--gold-soft); font-family: var(--mono); font-size: 10px; line-height: 1.7; letter-spacing: .045em; }
+    @media (max-width: 650px) {
+      .clients-heading { align-items: flex-start; flex-direction: column; gap: 14px; }
+      .client-grid { grid-template-columns: 1fr; }
+    }
   `,
 })
 export class ExperienceComponent {
@@ -174,4 +215,5 @@ export class ExperienceComponent {
   readonly responsibilities = EY_RESPONSIBILITIES;
   readonly highlights = EY_HIGHLIGHTS;
   readonly previous = PREVIOUS_EXPERIENCE;
+  readonly clients = CLIENT_ENGAGEMENTS;
 }

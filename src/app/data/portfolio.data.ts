@@ -13,7 +13,7 @@ export const SITE = {
   location: 'Ahmedabad, Gujarat, India',
   coords: '23.02° N · 72.57° E',
   // TODO(content): set preferred email — never invent one
-  contactEmail: '',
+  contactEmail: 'karandeepsinhjadeja@gmail.com',
   // TODO(content): drop the résumé into /public (e.g. /resume.pdf) and set the path
   resumeUrl: '',
   // POST endpoint for the contact form (fields: name, email, subject, message).
@@ -30,11 +30,10 @@ export const SITE = {
  * Empty paths render an elegant placeholder.
  */
 export const PHOTOS = {
-  portrait: 'images/KDMainPhoto.jpg',
-  jamnagar: '',
-  college: '',
-  exeter: '',
-  beyond: ['', '', ''],
+  portrait: 'images/MainImage.jpeg',
+  jamnagar: 'images/KV2.jpeg',
+  college: 'images/Vidhyasagar.jpeg',
+  exeter: 'images/Exeter.jpeg',
 };
 
 export interface NavLink { id: string; label: string; }
@@ -95,7 +94,7 @@ export const ABOUT_LEAD =
   'My journey has taken me from Jamnagar, Gujarat, to the University of Exeter in the United Kingdom and into the professional world of risk consulting at EY.';
 
 export const ABOUT_BODY = [
-  "With an academic foundation in commerce and an MBA from the University of Exeter, I've developed an interest in understanding how organizations make decisions, manage risks and create sustainable value.",
+  "With an academic foundation in commerce and an MSc from the University of Exeter, I've developed an interest in understanding how organizations make decisions, manage risks and create sustainable value.",
   'My time at Exeter expanded my exposure to business analytics, financial analysis, data-driven decision-making and sustainability.',
   'Today, as a Senior Analyst in risk consulting at EY, I work with a portfolio of international and national clients, bringing together analytical thinking, business knowledge and an international perspective.',
 ];
@@ -119,6 +118,7 @@ export const EY_RESPONSIBILITIES = [
 export const EY_HIGHLIGHTS = [
   'Promoted to Senior Analyst within a year of joining (Sep 2025 → Sep 2026)',
   'Trusted with a portfolio of international and national client engagements',
+  'Awarded with Client Extraordinaire'
 ];
 
 export const PREVIOUS_EXPERIENCE = [
@@ -126,12 +126,40 @@ export const PREVIOUS_EXPERIENCE = [
     company: 'ARK',
     role: 'Intern',
     // TODO(content): add internship dates
-    period: '',
+    period: 'Oct 2025 – Nov 2025',
     points: [
       'Analysed business models, financials, scalability and market positioning to identify acquisition opportunities',
       'Contributed to valuation models and process improvements',
       'Sector exposure across SaaS, content and streaming platforms',
     ],
+  },
+];
+
+/** Selected, anonymized client engagements; client names are intentionally omitted. */
+export const CLIENT_ENGAGEMENTS = [
+  {
+    market: 'United Arab Emirates',
+    sector: 'Oil, gas & logistics',
+    summary: 'Supported the implementation of internal control frameworks across operational areas for a leading oil and gas group and its subsidiaries.',
+    contribution: 'Internal controls · Operational risk · Framework implementation',
+  },
+  {
+    market: 'Saudi Arabia',
+    sector: 'Metals & mining',
+    summary: 'Contributed to a governance project for a major metals and mining business.',
+    contribution: 'Governance · Risk consulting · Process review',
+  },
+  {
+    market: 'Saudi Arabia',
+    sector: 'Oil refining & commodities trading',
+    summary: 'Supported issue validation in critical areas and prepared reporting for executive leadership, including the CEO.',
+    contribution: 'Issue validation · Critical-area reviews · Executive reporting',
+  },
+  {
+    market: 'India',
+    sector: 'Metals',
+    summary: 'Contributed to internal audit work at a copper plant, focusing on critical operational areas within a leading metal and port-handling business.',
+    contribution: 'Internal audit · Operational controls · Critical-area reviews',
   },
 ];
 
@@ -172,7 +200,7 @@ export const CHAPTERS: Chapter[] = [
     facts: [
       { label: 'Qualification', value: 'Bachelor of Commerce (B.Com)' },
       // TODO(content): university affiliation, location, graduation year
-      { label: 'To confirm', drafts: ['Official college name', 'Affiliation & location', 'Graduation year'] },
+      { label: 'To confirm', drafts: ['Vidyasagar Infotech College', 'Jamnagar,Gujarat', '2019-2022'] },
     ],
     body: 'My undergraduate education in commerce introduced me to the foundations of accounting, finance, economics and business.',
     aside: { kind: 'photo', src: PHOTOS.college, ratio: '4/3', placeholder: 'College campus photograph (optional)', caption: 'Bachelor of Commerce' },
@@ -184,7 +212,7 @@ export const CHAPTERS: Chapter[] = [
     facts: [
       { label: 'Location', value: 'Exeter, England, United Kingdom' },
       // TODO(content): verify exact official degree title (client describes it as an MBA)
-      { label: 'Qualification', value: 'MBA — The Exeter MBA' },
+      { label: 'Qualification', value: 'MSc — MSc in business analytics' },
       { label: 'Period', value: '2023–2024' },
       { label: 'Classification', value: '2:1' },
     ],
@@ -255,11 +283,7 @@ export const INTERESTS = [
 
 export const BEYOND = {
   body: 'At the University of Exeter, activities outside the classroom included football, hockey and powerlifting.',
-  photos: [
-    { caption: 'Football', src: PHOTOS.beyond[0] },
-    { caption: 'Hockey', src: PHOTOS.beyond[1] },
-    { caption: 'Powerlifting', src: PHOTOS.beyond[2] },
-  ],
+  activities: ['Football', 'Hockey', 'Powerlifting'],
 };
 
 /**

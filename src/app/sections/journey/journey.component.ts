@@ -3,12 +3,12 @@ import {
 } from '@angular/core';
 import { CHAPTERS } from '../../data/portfolio.data';
 import { MotionService } from '../../shared/motion.service';
-import { ParallaxDirective, RevealDirective } from '../../shared/motion.directives';
+import { RevealDirective } from '../../shared/motion.directives';
 import { DraftComponent, PhotoComponent } from '../../shared/ui.components';
 
 @Component({
   selector: 'app-journey',
-  imports: [RevealDirective, ParallaxDirective, PhotoComponent, DraftComponent],
+  imports: [RevealDirective, PhotoComponent, DraftComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './journey.component.html',
   styleUrl: './journey.component.css',

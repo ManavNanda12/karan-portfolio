@@ -80,12 +80,8 @@
 .portrait-wrap { position: relative; }
 .portrait-frame {
   position: absolute; top: 18px; left: 18px; right: -18px; bottom: -18px; border: 1px solid var(--gold); pointer-events: none;
-  transform: translate(calc(var(--px) * 14px), calc(var(--py) * 14px));
-  transition: transform .6s var(--ease);
 }
 .portrait { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--sand); color: var(--slate); }
-.liquid { position: absolute; inset: -12px; }
-.glow { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .6s ease; mix-blend-mode: soft-light; }
 
 .seal {
   position: absolute; left: -44px; bottom: 56px; width: 120px; height: 120px; border-radius: 50%;

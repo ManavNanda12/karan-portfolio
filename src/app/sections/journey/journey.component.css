@@ -79,9 +79,8 @@
 /* Photos */
 .ch-aside { min-width: 0; margin: 0; }
 .ph-frame { position: relative; overflow: hidden; background: var(--sand); }
-/* taller than its frame so parallax never shows an edge; lift the placeholder label back into view */
+/* Taller than its frame; lift the placeholder label back into view. */
 .ph-inner { position: absolute; inset: -8% 0; --ph-label-bottom: calc(7% + 14px); }
-.ph-frame:hover ::ng-deep img { transform: scale(1.05); }
 .cap { margin-top: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
 .present { display: flex; flex-direction: column; gap: 12px; }
