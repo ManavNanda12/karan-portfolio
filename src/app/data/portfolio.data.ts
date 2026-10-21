@@ -15,7 +15,7 @@ export const SITE = {
   // TODO(content): set preferred email — never invent one
   contactEmail: 'karandeepsinhjadeja@gmail.com',
   // TODO(content): drop the résumé into /public (e.g. /resume.pdf) and set the path
-  resumeUrl: '',
+  resumeUrl: 'images/Karandeep_CV.pdf',
   // POST endpoint for the contact form (fields: name, email, subject, message).
   // Left empty, the submission is simulated.
   formEndpoint: '',
